@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 
+//Misc notes...
 //https://www.c-sharpcorner.com/article/web-scraping-in-c-sharp/
 
 namespace WebScraper_HtmlAgilityPack
