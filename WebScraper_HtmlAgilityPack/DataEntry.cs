@@ -7,6 +7,7 @@ namespace WebScraper_HtmlAgilityPack
     public class DataEntry
     {
         public string TeamName { get; set; }
+        public int StatisticNumber { get; set; }
         public string Statistic { get; set; }
         public string Value { get; set; }
 
