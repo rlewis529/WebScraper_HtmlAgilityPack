@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 //Misc notes...
 //https://www.c-sharpcorner.com/article/web-scraping-in-c-sharp/
+
+//Next step:  make file output work
 
 namespace WebScraper_HtmlAgilityPack
 {
@@ -11,64 +14,61 @@ namespace WebScraper_HtmlAgilityPack
     {
         static void Main(string[] args)
         {
-            var teamList = new List<string>();
-                        
+            var teamList = new List<string>();                       
             teamList.Add("alabama-crimson-tide");
             teamList.Add("louisiana-state-tigers");
+            var teamListImport = new List<string>();
+            teamListImport = File.ReadLines("TeamNames.csv").Skip(1).ToList();
+
+            //foreach (var x in teamListImport)
+            //{
+            //    Console.WriteLine(x);
+            //}
+            //Console.WriteLine(teamListImport.Count);
 
             //string scrapeLink = "https://www.teamrankings.com/college-football/team/alabama-crimson-tide/stats";
-            string scrapeLink = "https://www.teamrankings.com/college-football/team/" + teamList[0] + "/stats";
-            
-
-            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
+            //string scrapeLink = "https://www.teamrankings.com/college-football/team/" + teamList[0] + "/stats";
             //HtmlAgilityPack.HtmlDocument doc = web.Load("http://www.yellowpages.com/search?search_terms=Software&geo_location_terms=Sydney2C+ND");
             //HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.yelp.com/search?find_desc=handyman&find_loc=Morrisville%2C+NC+27560&ns=1");
-            HtmlAgilityPack.HtmlDocument doc = web.Load(scrapeLink);
 
-            //var HeaderNames = doc.DocumentNode.SelectNodes("//a[@class='business-name']").ToList();
-            //var HeaderNames = doc.DocumentNode.SelectNodes("//a[@class='lemon--a__373c0__IEZFH link__373c0__29943 link-color--blue-dark__373c0__1mhJo link-size--inherit__373c0__2JXk5']").ToList();
-            //var dataTables = doc.DocumentNode.SelectNodes("//table[@class='tr-table-scrollable']").ToList(); //doesn't work
-            var headerText = doc.DocumentNode.SelectSingleNode("//h1[@id='h1-title']").InnerHtml;
-            headerText = headerText.Replace(" Stats", "");
-            var dataTables = doc.DocumentNode.SelectNodes("//table").ToList();
-            var dataValues = doc.DocumentNode.SelectNodes("//table//tr//td");
-            //var firstTable = dataTables[0];
+            //These are the important parts..
+            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
             var rawList = new List<DataEntry>();
-            //Console.WriteLine(rawList.GetType());
-            //var dataTable = dataTables[0];
+            var consolidatedList = new List<DataEntry>();
 
-            //Console.WriteLine(headerText);
-            //Console.WriteLine(dataTables.Count);
-            //Console.WriteLine(dataTables[0].InnerText);
-
-            //dataList.Add(new KeyValuePair<string, double>("Test",1.0));
-
-            //Console.WriteLine(dataColumns.GetType());
-            int counter = 0;
-            for (int i = 0; i < dataValues.Count; i++)
-            {                
-                if (i%2 == 0)
-                {
-                    rawList.Add(new DataEntry { TeamName = headerText });
-                    rawList[i/2].Statistic = dataValues[i].InnerText;
-                }
-                else
-                {
-                    rawList[i/2].Value = dataValues[i].InnerText;
-                }
-            }
-
-            counter = 0;
-            for (int i = 0; i < rawList.Count; i++)
+            //for (int teamNumber = 0; teamNumber < teamList.Count; teamNumber++)            
+            for (int teamNumber = 0; teamNumber < 10; teamNumber++)
+            //for (int teamNumber = 0; teamNumber < teamListImport.Count; teamNumber++)            
             {
-                Console.WriteLine(i + "    " + rawList[i].TeamName + "   " + rawList[i].Statistic + "     " + rawList[i].Value);
+                rawList.Clear();
+                //string scrapeLink = "https://www.teamrankings.com/college-football/team/" + teamList[teamNumber] + "/stats";
+                string scrapeLink = "https://www.teamrankings.com/college-football/team/" + teamListImport[teamNumber] + "/stats";
+                HtmlAgilityPack.HtmlDocument doc = web.Load(scrapeLink);
+                var headerText = doc.DocumentNode.SelectSingleNode("//h1[@id='h1-title']").InnerHtml;
+                headerText = headerText.Replace(" Stats", "");
+                var dataValues = doc.DocumentNode.SelectNodes("//table//tr//td");
+
+                for (int i = 0; i < dataValues.Count; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        rawList.Add(new DataEntry { TeamName = headerText });
+                        rawList[i / 2].Statistic = dataValues[i].InnerText;
+                    }
+                    else
+                    {
+                        rawList[i / 2].Value = dataValues[i].InnerText;
+                    }
+                }
+                consolidatedList.AddRange(rawList);              
             }
 
-
-            //foreach (var item in dataTables)
+            //for (int i = 0; i < consolidatedList.Count; i++)
             //{
-            //    Console.WriteLine(item.InnerText);
+            //    Console.WriteLine(i + "    " + consolidatedList[i].TeamName + "   " + consolidatedList[i].Statistic + "     " + consolidatedList[i].Value);
             //}
+
+            File.WriteAllLines("testOutput.csv", consolidatedList.Select(x => string.Join(",", x)));
         }
     }
 }
