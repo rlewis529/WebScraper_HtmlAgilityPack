@@ -8,6 +8,8 @@ using System.Text;
 //Misc notes...
 //https://www.c-sharpcorner.com/article/web-scraping-in-c-sharp/
 
+//Next steps:  
+// Import text file into SQL table(s)?
 
 namespace WebScraper_HtmlAgilityPack
 {
