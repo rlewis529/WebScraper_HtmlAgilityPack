@@ -57,11 +57,6 @@ namespace WebScraper_HtmlAgilityPack
                     sb.AppendLine(data.TeamName + "," + data.StatisticNumber + "," + data.Statistic + "," + data.Value);
                 }
             }
-            
-            //foreach (var data in consolidatedList)
-            //{
-            //    sb.AppendLine(data.TeamName + "," + data.StatisticNumber + "," + data.Statistic + "," + data.Value);
-            //}
 
             File.WriteAllText("testOutput.csv", sb.ToString());
         }
