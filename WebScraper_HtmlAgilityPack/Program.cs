@@ -8,7 +8,6 @@ using System.Text;
 //Misc notes...
 //https://www.c-sharpcorner.com/article/web-scraping-in-c-sharp/
 
-//Next step:  make file output work
 
 namespace WebScraper_HtmlAgilityPack
 {
@@ -17,8 +16,8 @@ namespace WebScraper_HtmlAgilityPack
         static void Main(string[] args)
         {
             var teamList = new List<string>();                       
-            teamList.Add("alabama-crimson-tide");
-            teamList.Add("louisiana-state-tigers");
+            //teamList.Add("alabama-crimson-tide");
+            //teamList.Add("louisiana-state-tigers");
             var teamListImport = new List<string>();
             teamListImport = File.ReadLines("TeamNames.csv").Skip(1).ToList();        
 
@@ -26,9 +25,9 @@ namespace WebScraper_HtmlAgilityPack
             HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
             var rawList = new List<DataEntry>();
             var consolidatedList = new List<DataEntry>();
+            var sb = new StringBuilder();
 
-            for (int teamNumber = 0; teamNumber < 5; teamNumber++)
-            //for (int teamNumber = 0; teamNumber < teamListImport.Count; teamNumber++)            
+            for (int teamNumber = 0; teamNumber < teamListImport.Count; teamNumber++)            
             {
                 rawList.Clear();               
                 string scrapeLink = "https://www.teamrankings.com/college-football/team/" + teamListImport[teamNumber] + "/stats";
@@ -50,14 +49,17 @@ namespace WebScraper_HtmlAgilityPack
                         rawList[i / 2].Value = dataValues[i].InnerText;
                     }
                 }
-                consolidatedList.AddRange(rawList);              
-            }        
-
-            var sb = new StringBuilder();
-            foreach (var data in consolidatedList)
-            {
-                sb.AppendLine(data.TeamName + "," + data.StatisticNumber + "," + data.Statistic + "," + data.Value);
+                consolidatedList.AddRange(rawList);  
+                foreach (var data in rawList)
+                {
+                    sb.AppendLine(data.TeamName + "," + data.StatisticNumber + "," + data.Statistic + "," + data.Value);
+                }
             }
+            
+            //foreach (var data in consolidatedList)
+            //{
+            //    sb.AppendLine(data.TeamName + "," + data.StatisticNumber + "," + data.Statistic + "," + data.Value);
+            //}
 
             File.WriteAllText("testOutput.csv", sb.ToString());
         }
