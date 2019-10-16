@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/16/2019 12:17:19 PM"
@@ -12,7 +12,8 @@
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="ImportFootballStatsToSQLServer"
-  DTS:VersionGUID="{C9FE77A8-A279-4F1A-B282-F74FF17991D8}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{B24B6183-10D2-496C-A6C9-2B8999DAA8BD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -85,13 +86,45 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task 1"
+      DTS:refId="Package\Clear dboCleanedData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9559A175-F6F2-49E2-BA9B-7314B68C0A31}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear dboCleanedData"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
+          SQLTask:SqlStatementSource="DELETE&#xA;FROM dbo.CleanedData" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear dboRawData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4C6CF109-BBA9-4FA0-98FF-BDB400D526F6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear dboRawData"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
+          SQLTask:SqlStatementSource="DELETE &#xA;FROM dbo.RawData" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import From Flat File"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:DTSID="{66E51B32-DE8C-4444-8FF4-04FC6FC6489A}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task 1"
+      DTS:ObjectName="Import From Flat File"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -100,7 +133,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Data Flow Task 1\Data Conversion 0 - 0"
+              refId="Package\Import From Flat File\Data Conversion 0 - 0"
               componentClassID="Microsoft.DataConvert"
               contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Data Conversion"
@@ -108,55 +141,55 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
+                  refId="Package\Import From Flat File\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
                   name="Data Conversion Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[Column 0]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[Column 0]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Column 0"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 0]" />
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 0]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[Column 1]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[Column 1]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Column 1"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 1]" />
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 1]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[Column 2]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[Column 2]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Column 2"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 2]" />
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 2]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[Column 3]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[Column 3]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Column 3"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 3]" />
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 3]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output]"
+                  refId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output]"
                   exclusionGroup="1"
                   name="Data Conversion Output"
-                  synchronousInputId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
+                  synchronousInputId="Package\Import From Flat File\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 0]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 0]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 0]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 0]"
                       name="Column 0"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -164,7 +197,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 0]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 0]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -172,11 +205,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 1]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 1]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 1]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 1]"
                       name="Column 1"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -184,7 +217,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 1]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 1]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -192,12 +225,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 2]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 2]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 2]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 2]"
                       name="Column 2"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -205,7 +238,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 2]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 2]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -213,12 +246,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 3]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 3]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 3]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 3]"
                       name="Column 3"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -226,7 +259,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 3]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 3]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -237,22 +270,22 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output]"
+                  refId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Data Conversion Error Output"
-                  synchronousInputId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
+                  synchronousInputId="Package\Import From Flat File\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      refId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -261,7 +294,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task 1\Destination - RawData"
+              refId="Package\Import From Flat File\Destination - RawData"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -318,7 +351,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination - RawData.Connections[OleDbConnection]"
+                  refId="Package\Import From Flat File\Destination - RawData.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
                   connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
                   description="The OLE DB runtime connection used to access the database."
@@ -326,80 +359,80 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input]"
+                  refId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].Columns[Column 0]"
+                      refId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].Columns[Column 0]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Column 0"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].ExternalColumns[TeamName]"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 0]" />
+                      externalMetadataColumnId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].ExternalColumns[TeamName]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 0]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].Columns[Column 1]"
+                      refId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].Columns[Column 1]"
                       cachedDataType="i4"
                       cachedName="Column 1"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].ExternalColumns[StatisticNumber]"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 1]" />
+                      externalMetadataColumnId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].ExternalColumns[StatisticNumber]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 1]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].Columns[Column 2]"
+                      refId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].Columns[Column 2]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Column 2"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].ExternalColumns[Statistic]"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 2]" />
+                      externalMetadataColumnId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].ExternalColumns[Statistic]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 2]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].Columns[Column 3]"
+                      refId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].Columns[Column 3]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Column 3"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].ExternalColumns[Value]"
-                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 3]" />
+                      externalMetadataColumnId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].ExternalColumns[RawValue]"
+                      lineageId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[Column 3]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].ExternalColumns[TeamName]"
+                      refId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].ExternalColumns[TeamName]"
                       dataType="nText"
                       name="TeamName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].ExternalColumns[StatisticNumber]"
+                      refId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].ExternalColumns[StatisticNumber]"
                       dataType="i4"
                       name="StatisticNumber" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].ExternalColumns[Statistic]"
+                      refId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].ExternalColumns[Statistic]"
                       dataType="nText"
                       name="Statistic" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input].ExternalColumns[Value]"
+                      refId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input].ExternalColumns[RawValue]"
                       dataType="wstr"
                       length="50"
-                      name="Value" />
+                      name="RawValue" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination - RawData.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Import From Flat File\Destination - RawData.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input]">
+                  synchronousInputId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Import From Flat File\Destination - RawData.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - RawData.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Import From Flat File\Destination - RawData.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - RawData.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Import From Flat File\Destination - RawData.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - RawData.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Import From Flat File\Destination - RawData.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -408,7 +441,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task 1\Source - testOutput_csv"
+              refId="Package\Import From Flat File\Source - testOutput_csv"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
@@ -428,25 +461,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Source - testOutput_csv.Connections[FlatFileConnection]"
+                  refId="Package\Import From Flat File\Source - testOutput_csv.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[SourceConnectionFlatFile]"
                   connectionManagerRefId="Package.ConnectionManagers[SourceConnectionFlatFile]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output]"
+                  refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 0]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 0]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 0]"
+                      externalMetadataColumnId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 0]"
                       length="50"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 0]"
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 0]"
                       name="Column 0"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -461,14 +494,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 1]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 1]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
+                      externalMetadataColumnId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
                       length="50"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 1]"
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 1]"
                       name="Column 1"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -483,14 +516,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 2]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 2]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 2]"
+                      externalMetadataColumnId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 2]"
                       length="50"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 2]"
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 2]"
                       name="Column 2"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -505,14 +538,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 3]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 3]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
+                      externalMetadataColumnId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
                       length="50"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 3]"
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].Columns[Column 3]"
                       name="Column 3"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -530,25 +563,25 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 0]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 0]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Column 0" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Column 1" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 2]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 2]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Column 2" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -556,27 +589,27 @@
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Error Output]"
+                  refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="1252"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -587,18 +620,271 @@
           </components>
           <paths>
             <path
-              refId="Package\Data Flow Task 1.Paths[Data Conversion Output]"
-              endId="Package\Data Flow Task 1\Destination - RawData.Inputs[Destination Input]"
+              refId="Package\Import From Flat File.Paths[Data Conversion Output]"
+              endId="Package\Import From Flat File\Destination - RawData.Inputs[Destination Input]"
               name="Data Conversion Output"
-              startId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output]" />
+              startId="Package\Import From Flat File\Data Conversion 0 - 0.Outputs[Data Conversion Output]" />
             <path
-              refId="Package\Data Flow Task 1.Paths[Flat File Source Output]"
-              endId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
+              refId="Package\Import From Flat File.Paths[Flat File Source Output]"
+              endId="Package\Import From Flat File\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
               name="Flat File Source Output"
-              startId="Package\Data Flow Task 1\Source - testOutput_csv.Outputs[Flat File Source Output]" />
+              startId="Package\Import From Flat File\Source - testOutput_csv.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate dboCleanedData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1F90A7C3-7EF6-46D0-8052-D1CBE3D40701}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate dboCleanedData"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
+          SQLTask:SqlStatementSource="WITH CTE_1 AS (&#xA;SELECT &#xA;*&#xA;,SUBSTRING(RawValue, CHARINDEX('(',RawValue)-1, LEN(RawValue)-CHARINDEX('(',RawValue)+2) as &quot;SpacePlusRanking&quot;&#xA;,REPLACE(RawValue,&#xA;&#x9;&#x9;SUBSTRING(RawValue, CHARINDEX('(',RawValue)-1, LEN(RawValue)-CHARINDEX('(',RawValue)+2),&#xA;&#x9;&#x9;'') as &quot;ValueOnly&quot;&#xA;,CASE&#xA;&#x9;WHEN CHARINDEX('%', RawValue)&lt;&gt; 0 THEN 'Percentage'&#xA;&#x9;WHEN CHARINDEX('+', RawValue)&lt;&gt; 0 THEN 'Net-Margin'&#xA;&#x9;WHEN CHARINDEX('-', RawValue)&lt;&gt; 0 THEN 'Net-Margin'&#xA;&#x9;ELSE 'Value'&#x9;&#xA;&#x9;END AS &quot;ValueType&quot;&#xA;FROM dbo.RawData&#xA;)&#xA;INSERT INTO dbo.CleanedData&#xA;(TeamName&#xA;,StatisticNumber&#xA;,Statistic&#xA;,RawValue&#xA;,SpacePlusRanking&#xA;,ValueOnly&#xA;,ValueType&#xA;,ValueValue&#xA;,PercentageValue&#xA;,NetMarginValue&#xA;)&#xA;SELECT *&#xA;,CASE &#xA;&#x9;WHEN CTE_1.ValueType='Value' THEN CONVERT(DECIMAL(7,3),CTE_1.ValueOnly)&#xA;&#x9;ELSE NULL&#xA;&#x9;END AS &quot;ValueValue&quot;&#xA;,CASE&#x9;&#xA;&#x9;WHEN CTE_1.ValueType='Percentage' THEN CONVERT(DECIMAL(7,3), LEFT(CTE_1.ValueOnly, LEN(CTE_1.ValueOnly)-1))&#xA;&#x9;ELSE NULL&#xA;&#x9;END AS &quot;PercentageValue&quot;&#xA;,CASE&#xA;&#x9;WHEN CTE_1.ValueType='Net-Margin' AND LEFT(CTE_1.ValueOnly,2) = '--'  THEN 0&#xA;&#x9;WHEN CTE_1.ValueType='Net-Margin' AND LEFT(CTE_1.ValueOnly,1) = '+' THEN CONVERT(DECIMAL(6,3), SUBSTRING(CTE_1.ValueOnly,2,LEN(CTE_1.ValueOnly)-1))&#xA;&#x9;WHEN CTE_1.ValueType='Net-Margin' AND LEFT(CTE_1.ValueOnly,2) &lt;&gt; '--' AND LEFT(CTE_1.ValueOnly,1) = '-' THEN CONVERT(DECIMAL(6,3), SUBSTRING(CTE_1.ValueOnly,2,LEN(CTE_1.ValueOnly)-1))*-1&#xA;&#x9;ELSE NULL&#xA;&#x9;END AS &quot;NetMarginValue&quot;&#xA;FROM CTE_1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C0CAB7F6-639F-4E78-9714-D967B2A02278}"
+      DTS:From="Package\Clear dboRawData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Import From Flat File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F4EEBE7E-3ABF-4652-A495-907980296123}"
+      DTS:From="Package\Import From Flat File"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Clear dboCleanedData" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5F6974DD-A4D1-41B0-A0AB-567C621018D6}"
+      DTS:From="Package\Clear dboCleanedData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Populate dboCleanedData" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Import From Flat File"
+          TopLeft="98.0714301479106,164.558825760152" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Clear dboRawData"
+          TopLeft="96.0000016348703,72.1882363065304" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="177.20000163487,113.78823630653">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.67142851304027,50.7705894536213"
+              Start="0,0"
+              End="9.67142851304027,43.2705894536213">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3852947268106" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.3852947268106"
+                    Point2="0,25.3852947268106"
+                    Point3="4,25.3852947268106" />
+                  <mssgle:LineSegment
+                    End="5.67142851304027,25.3852947268106" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.67142851304027,25.3852947268106"
+                    Point2="9.67142851304027,25.3852947268106"
+                    Point3="9.67142851304027,29.3852947268106" />
+                  <mssgle:LineSegment
+                    End="9.67142851304027,43.2705894536213" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\Clear dboCleanedData"
+          TopLeft="121.142859205908,245.317650499311" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="186.871430147911,206.158825760152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.4714290579971,39.1588247391592"
+              Start="0,0"
+              End="25.4714290579971,31.6588247391592">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5794123695796" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5794123695796"
+                    Point2="0,19.5794123695796"
+                    Point3="4,19.5794123695796" />
+                  <mssgle:LineSegment
+                    End="21.4714290579971,19.5794123695796" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.4714290579971,19.5794123695796"
+                    Point2="25.4714290579971,19.5794123695796"
+                    Point3="25.4714290579971,23.5794123695796" />
+                  <mssgle:LineSegment
+                    End="25.4714290579971,31.6588247391592" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\Populate dboCleanedData"
+          TopLeft="138.285716640706,323.623533950463" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="212.342859205908,286.917650499311">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.5428574347983,36.7058834511516"
+              Start="0,0"
+              End="25.5428574347983,29.2058834511516">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.3529417255758" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.3529417255758"
+                    Point2="0,18.3529417255758"
+                    Point3="4,18.3529417255758" />
+                  <mssgle:LineSegment
+                    End="21.5428574347983,18.3529417255758" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.5428574347983,18.3529417255758"
+                    Point2="25.5428574347983,18.3529417255758"
+                    Point3="25.5428574347983,22.3529417255758" />
+                  <mssgle:LineSegment
+                    End="25.5428574347983,29.2058834511516" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import From Flat File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Import From Flat File\Destination - RawData"
+          TopLeft="95.2142871739914,358.58235504322" />
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\Import From Flat File\Data Conversion 0 - 0"
+          TopLeft="96.8142871739913,256.98235504322" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Import From Flat File\Source - testOutput_csv"
+          TopLeft="91.2142871739914,155.38235504322" />
+        <EdgeLayout
+          Id="Package\Import From Flat File.Paths[Flat File Source Output]"
+          TopLeft="187.214287173991,196.98235504322">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999997"
+              Start="0,0"
+              End="0,52.4999999999997">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999997" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import From Flat File.Paths[Data Conversion Output]"
+          TopLeft="187.214287173991,298.58235504322">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import From Flat File\Destination - RawData">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
