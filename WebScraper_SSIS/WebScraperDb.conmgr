@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
-  DTS:ObjectName="RELIAS-RLEWIS2_MSSQLSERVER2016.WebScraper"
+  DTS:ObjectName="WebScraperDatabase"
   DTS:DTSID="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
   DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::DbName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::ServerNameForDb]</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectionString="Data Source=RELIAS-RLEWIS2\MSSQLSERVER2016;Initial Catalog=WebScraper;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
