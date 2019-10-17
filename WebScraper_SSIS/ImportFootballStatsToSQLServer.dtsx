@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="ImportFootballStatsToSQLServer"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{AB19FFA3-0A21-46C2-B5B4-F997288A1133}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{9D6AE77C-EA25-45E7-B120-46A0AE0C97C9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,6 +32,8 @@
       DTS:CreationName="FLATFILE"
       DTS:DTSID="{460D1628-F3F4-438D-AA5D-E123026C131C}"
       DTS:ObjectName="SourceConnectionFlatFile">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::RawFileSourcePath] + "\\testOutput.csv"</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -690,13 +692,21 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="177.6,41.6"
-          Id="Package\Import From Flat File"
-          TopLeft="98.6428587290706,165.170590474614" />
+          Size="182.4,41.6"
+          Id="Package\Clear dboCleanedData"
+          TopLeft="121.142859205908,244.705885784849" />
         <NodeLayout
           Size="162.4,41.6"
           Id="Package\Clear dboRawData"
           TopLeft="96.0000016348703,72.8000010209925" />
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Import From Flat File"
+          TopLeft="98.6428587290706,165.170590474614" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\Populate dboCleanedData"
+          TopLeft="138.285716640706,323.623533950463" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="177.20000163487,114.400001020993">
@@ -731,10 +741,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="182.4,41.6"
-          Id="Package\Clear dboCleanedData"
-          TopLeft="121.142859205908,244.705885784849" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="187.442858729071,206.770590474614">
@@ -769,10 +775,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="199.2,41.6"
-          Id="Package\Populate dboCleanedData"
-          TopLeft="138.285716640706,323.623533950463" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="212.342859205908,286.305885784849">

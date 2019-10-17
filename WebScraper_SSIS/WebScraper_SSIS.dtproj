@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">RELIAS-RLEWIS2</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALkP6mZ0KXEO+TV+Ns1/0cQAAAAACAAAAAAADZgAAwAAAABAAAADS62mJsUh5zDMzoIQrlQqkAAAAAASAAACgAAAAEAAAAC21KSLQku03rUrZiD4ueRKIAAAAIDq2I2HPI+kkVuf8CVy2tTUdD5Ss4lbb8P3OH8mk/EkrLTWwr8K6eHOXxL41ICR+cOjRuuKkyKNrcck/bScSH2vcln/FYogdCDzVmmRQEYaBdQbHEcCuzQ22s6azXIwr/BWTJCSJ3t1oKQc2SqhtmOqKnNxm31VSaiQAXjoDhDHQTAowgo5+zBQAAABHHwbyTsooZoPACMGy8pPaK/a78A==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALkP6mZ0KXEO+TV+Ns1/0cQAAAAACAAAAAAADZgAAwAAAABAAAADTT04DmDMKGZloV0hascHXAAAAAASAAACgAAAAEAAAANLIueNIg9Ofj9oUlTVM072IAAAA8ELSMcJk6oj6wO97ypF1X4RDGVmjAXVAjc+FoxiUPp9lg3LIh/SpmTRGQ8pVwOeyLBVbmWWVDeyAnbEOQu3bfG0VmQyL5k4GC91xZTIs/rRVg1PGGyzv+KlCuNA7cnpbFAHZfQlKQ0aqi+2YcX6VUA51WFpb/8TCfh3j9itvtvhP7Dfff4Rw1xQAAAAZ5V/juur6JFDa8znz8TCrILmTCg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -34,7 +34,7 @@
           <SSIS:Package SSIS:Name="ImportFootballStatsToSQLServer.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
-          <SSIS:ConnectionManager SSIS:Name="RELIAS-RLEWIS2_MSSQLSERVER2016.WebScraper.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="WebScraper.Db.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
@@ -181,10 +181,10 @@
                 <SSIS:Property SSIS:Name="Name">ImportFootballStatsToSQLServer</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">9</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">15</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{8C3594FA-B55D-40CA-853F-5FFD6413B3E3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{9D6AE77C-EA25-45E7-B120-46A0AE0C97C9}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">SSIS Package Description</SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
@@ -366,21 +366,6 @@
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.SourceConnectionFlatFile.ConnectionString">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\Users\rlewis\source\repos\WebScraper_HtmlAgilityPack\WebScraper_HtmlAgilityPack\bin\Debug\netcoreapp2.2\testOutput.csv</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.SourceConnectionFlatFile.DataRowsToSkip">
