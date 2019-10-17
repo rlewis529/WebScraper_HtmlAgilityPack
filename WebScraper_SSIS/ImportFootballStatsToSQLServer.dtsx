@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="ImportFootballStatsToSQLServer"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{9D6AE77C-EA25-45E7-B120-46A0AE0C97C9}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{D84364E4-B226-4F96-B352-1A229D32461A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
