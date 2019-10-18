@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper_HtmlAgilityPack"
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "WebScraper_SSIS", "WebScraper_SSIS\WebScraper_SSIS.dtproj", "{02FFB402-5BD2-4507-980A-490DF0FD436A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper_WebApp", "WebScraper_WebApp\WebScraper_WebApp.csproj", "{10A2230D-7807-41D0-A3BA-4599F5411BE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,12 @@ Global
 		{02FFB402-5BD2-4507-980A-490DF0FD436A}.Development|Any CPU.Build.0 = Development
 		{02FFB402-5BD2-4507-980A-490DF0FD436A}.Release|Any CPU.ActiveCfg = Development
 		{02FFB402-5BD2-4507-980A-490DF0FD436A}.Release|Any CPU.Build.0 = Development
+		{10A2230D-7807-41D0-A3BA-4599F5411BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10A2230D-7807-41D0-A3BA-4599F5411BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10A2230D-7807-41D0-A3BA-4599F5411BE5}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{10A2230D-7807-41D0-A3BA-4599F5411BE5}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{10A2230D-7807-41D0-A3BA-4599F5411BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10A2230D-7807-41D0-A3BA-4599F5411BE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
