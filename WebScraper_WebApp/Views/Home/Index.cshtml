@@ -10,17 +10,19 @@
 </div>*@
 <br />
 
-@Html.DropDownList("StatSelect",
-                    new SelectList(Model.statList.Select(x => new { Value = x.statNumber, Text = x.statName }),
-                        "Value",
-                        "Text"
-                        ), 
-                    "- Select a Statistic -"
-                    )
+<form method="post">
+    @Html.DropDownList("statSelect",
+                        new SelectList(Model.statList.Select(x => new { Value = x.statNumber, Text = x.statName }),
+                            "Value",
+                            "Text"
+                            )                        
+                        )
+<input type="submit" />
+</form>
 
 <br />
 <br />
-<h2>Total Offense</h2>
+<h2>@Model.resultList[0].statName</h2>
 
 <table>
     <tr>

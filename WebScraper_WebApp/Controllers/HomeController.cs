@@ -20,24 +20,57 @@ namespace WebScraper_WebApp.Controllers
             this.dbContext = dbContext;
         } 
 
-
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult Index(int statSelect)
         {            
             var q = from a in dbContext.CleanedData
-                    where a.StatisticNumber == 2
+                    where a.StatisticNumber == statSelect
+                    orderby a.ValueValue descending
+                    select new ResultListItem
+                    {
+                        teamName = a.TeamName,
+                        statValue = (decimal)a.ValueValue,
+                        statName = a.Statistic
+                    };
+            List<ResultListItem> resultList = q.ToList();
+
+            var statValueCategories = from a in dbContext.CleanedData
+                                      where a.TeamName == "Air Force Falcons"
+                                      && a.ValueType == "Value"
+                                      orderby a.StatisticNumber                                      
+                                      select new StatListItem
+                                      {
+                                          statName = a.Statistic,
+                                          statNumber = (int)a.StatisticNumber
+                                      };
+            List<StatListItem> statList = statValueCategories.ToList();
+
+
+            ResultViewModel resultViewModel = new ResultViewModel();
+            resultViewModel.resultList = resultList;
+            resultViewModel.statList = statList;                
+
+            return View(resultViewModel);
+        }
+
+
+        public IActionResult Index()
+        {
+            var q = from a in dbContext.CleanedData
+                    where a.StatisticNumber == 0
                     orderby a.ValueValue descending                    
                     select new ResultListItem 
                     { 
                         teamName = a.TeamName,
-                        statValue = (decimal)a.ValueValue 
+                        statValue = (decimal)a.ValueValue,
+                        statName = a.Statistic
                     };                        
             List<ResultListItem> resultList = q.ToList();
 
             var statValueCategories = from a in dbContext.CleanedData
                                       where a.TeamName == "Air Force Falcons"
                                       && a.ValueType == "Value"
-                                      orderby a.StatisticNumber
-                                      //select a.Statistic;
+                                      orderby a.StatisticNumber                                      
                                       select new StatListItem
                                       {
                                           statName = a.Statistic,

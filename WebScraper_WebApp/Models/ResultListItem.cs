@@ -9,5 +9,6 @@ namespace WebScraper_WebApp.Models
     {
         public string teamName { get; set; }
         public decimal statValue { get; set; }
+        public string statName { get; set; }
     }
 }

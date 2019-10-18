@@ -11,6 +11,8 @@ namespace WebScraper_WebApp.Models
         
         //public List<string> statNames { get; set; }
         public List<StatListItem> statList { get; set; }
+        public string selectedStatistic { get; set; }
+        public int selectedStatisticNumber { get; set; }
 
     }
 }
