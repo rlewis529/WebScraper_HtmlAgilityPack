@@ -30,10 +30,27 @@ namespace WebScraper_WebApp.Controllers
                     { 
                         teamName = a.TeamName,
                         statValue = (decimal)a.ValueValue 
-                    };
-                        
-            List<ResultListItem> resultList = q.ToList();            
-            return View(resultList);
+                    };                        
+            List<ResultListItem> resultList = q.ToList();
+
+            var statValueCategories = from a in dbContext.CleanedData
+                                      where a.TeamName == "Air Force Falcons"
+                                      && a.ValueType == "Value"
+                                      orderby a.StatisticNumber
+                                      //select a.Statistic;
+                                      select new StatListItem
+                                      {
+                                          statName = a.Statistic,
+                                          statNumber = (int)a.StatisticNumber
+                                      };
+            List<StatListItem> statList = statValueCategories.ToList();
+
+
+            ResultViewModel resultViewModel = new ResultViewModel();
+            resultViewModel.resultList = resultList;
+            resultViewModel.statList = statList;
+
+            return View(resultViewModel);
         }
 
         public IActionResult Privacy()
