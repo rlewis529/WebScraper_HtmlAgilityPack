@@ -7,6 +7,7 @@ using System.Text;
 
 //Misc notes...
 //https://www.c-sharpcorner.com/article/web-scraping-in-c-sharp/
+//Example link:  https://www.teamrankings.com/college-football/team/louisiana-state-tigers/stats
 
 //Next steps:  
 // Import text file into SQL table(s)?
@@ -17,6 +18,9 @@ namespace WebScraper_HtmlAgilityPack
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Accessing source webpages and scraping data...");
+            Console.WriteLine();
+            Console.WriteLine("Data collected from...");
             var teamList = new List<string>();                       
             //teamList.Add("alabama-crimson-tide");
             //teamList.Add("louisiana-state-tigers");
@@ -56,9 +60,10 @@ namespace WebScraper_HtmlAgilityPack
                 {
                     sb.AppendLine(data.TeamName + "," + data.StatisticNumber + "," + data.Statistic + "," + data.Value);
                 }
+                Console.WriteLine(teamListImport[teamNumber]);
             }
-
             File.WriteAllText("testOutput.csv", sb.ToString());
+            Console.WriteLine("Data collection complete.");
         }
     }
 }
