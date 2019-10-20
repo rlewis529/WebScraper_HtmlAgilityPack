@@ -5,14 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="RELIAS-RLEWIS2"
   DTS:CreatorName="RELIAS\rlewis"
+  DTS:DelayValidation="True"
   DTS:DTSID="{50993CF9-C15A-4B1F-A32C-DDAA8D76906F}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.1301.433"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{BB8A7DF0-27C8-4104-A639-AD24CA97C6CD}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{30B9AB3F-FD22-4B0F-A6CC-22F6CF41149B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -88,7 +89,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
-          SQLTask:SqlStatementSource="IF NOT EXISTS &#xA;(SELECT 1&#xA;FROM INFORMATION_SCHEMA.TABLES&#xA;WHERE TABLE_TYPE='BASE TABLE'&#xA;AND TABLE_SCHEMA='dbo'&#xA;AND TABLE_NAME='CleanedData')&#xA;CREATE TABLE [dbo].[CleanedData](&#xA;&#x9;[TeamName] [nvarchar](max) NULL,&#xA;&#x9;[StatisticNumber] [int] NULL,&#xA;&#x9;[Statistic] [nvarchar](max) NULL,&#xA;&#x9;[RawValue] [nvarchar](50) NULL,&#xA;&#x9;[SpacePlusRanking] [nvarchar](50) NULL,&#xA;&#x9;[ValueOnly] [nvarchar](4000) NULL,&#xA;&#x9;[ValueType] [varchar](10) NOT NULL,&#xA;&#x9;[ValueValue] [decimal](7, 3) NULL,&#xA;&#x9;[PercentageValue] [decimal](7, 3) NULL,&#xA;&#x9;[NetMarginValue] [decimal](8, 3) NULL&#xA;) ;&#xA;&#xA;DELETE&#xA;FROM dbo.CleanedData" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF NOT EXISTS &#xA;(SELECT 1&#xA;FROM INFORMATION_SCHEMA.TABLES&#xA;WHERE TABLE_TYPE='BASE TABLE'&#xA;AND TABLE_SCHEMA='dbo'&#xA;AND TABLE_NAME='CleanedData')&#xA;CREATE TABLE [dbo].[CleanedData](&#xA;&#x9;[TeamName] [nvarchar](max) NULL,&#xA;&#x9;[StatisticNumber] [int] NULL,&#xA;&#x9;[Statistic] [nvarchar](max) NULL,&#xA;&#x9;[RawValue] [nvarchar](50) NULL,&#xA;&#x9;[SpacePlusRanking] [nvarchar](50) NULL,&#xA;&#x9;[ValueOnly] [nvarchar](4000) NULL,&#xA;&#x9;[ValueType] [varchar](10) NOT NULL,&#xA;&#x9;[ValueValue] [decimal](8, 3) NULL,&#xA;&#x9;[PercentageValue] [decimal](8, 3) NULL,&#xA;&#x9;[NetMarginValue] [decimal](8, 3) NULL,&#xA;&#x9;[CombinedValue] [decimal](8, 3) NULL&#xA;) ;&#xA;&#xA;DELETE&#xA;FROM dbo.CleanedData" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -633,6 +634,22 @@
           SQLTask:SqlStatementSource="WITH CTE_1 AS (&#xA;SELECT &#xA;*&#xA;,SUBSTRING(RawValue, CHARINDEX('(',RawValue)-1, LEN(RawValue)-CHARINDEX('(',RawValue)+2) as &quot;SpacePlusRanking&quot;&#xA;,REPLACE(RawValue,&#xA;&#x9;&#x9;SUBSTRING(RawValue, CHARINDEX('(',RawValue)-1, LEN(RawValue)-CHARINDEX('(',RawValue)+2),&#xA;&#x9;&#x9;'') as &quot;ValueOnly&quot;&#xA;,CASE&#xA;&#x9;WHEN CHARINDEX('%', RawValue)&lt;&gt; 0 THEN 'Percentage'&#xA;&#x9;WHEN CHARINDEX('+', RawValue)&lt;&gt; 0 THEN 'Net-Margin'&#xA;&#x9;WHEN CHARINDEX('-', RawValue)&lt;&gt; 0 THEN 'Net-Margin'&#xA;&#x9;ELSE 'Value'&#x9;&#xA;&#x9;END AS &quot;ValueType&quot;&#xA;FROM dbo.RawData&#xA;)&#xA;INSERT INTO dbo.CleanedData&#xA;(TeamName&#xA;,StatisticNumber&#xA;,Statistic&#xA;,RawValue&#xA;,SpacePlusRanking&#xA;,ValueOnly&#xA;,ValueType&#xA;,ValueValue&#xA;,PercentageValue&#xA;,NetMarginValue&#xA;)&#xA;SELECT *&#xA;,CASE &#xA;&#x9;WHEN CTE_1.ValueType='Value' THEN CONVERT(DECIMAL(7,3),CTE_1.ValueOnly)&#xA;&#x9;ELSE NULL&#xA;&#x9;END AS &quot;ValueValue&quot;&#xA;,CASE&#x9;&#xA;&#x9;WHEN CTE_1.ValueType='Percentage' THEN CONVERT(DECIMAL(7,3), LEFT(CTE_1.ValueOnly, LEN(CTE_1.ValueOnly)-1))&#xA;&#x9;ELSE NULL&#xA;&#x9;END AS &quot;PercentageValue&quot;&#xA;,CASE&#xA;&#x9;WHEN CTE_1.ValueType='Net-Margin' AND LEFT(CTE_1.ValueOnly,2) = '--'  THEN 0&#xA;&#x9;WHEN CTE_1.ValueType='Net-Margin' AND LEFT(CTE_1.ValueOnly,1) = '+' THEN CONVERT(DECIMAL(6,3), SUBSTRING(CTE_1.ValueOnly,2,LEN(CTE_1.ValueOnly)-1))&#xA;&#x9;WHEN CTE_1.ValueType='Net-Margin' AND LEFT(CTE_1.ValueOnly,2) &lt;&gt; '--' AND LEFT(CTE_1.ValueOnly,1) = '-' THEN CONVERT(DECIMAL(6,3), SUBSTRING(CTE_1.ValueOnly,2,LEN(CTE_1.ValueOnly)-1))*-1&#xA;&#x9;ELSE NULL&#xA;&#x9;END AS &quot;NetMarginValue&quot;&#xA;FROM CTE_1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update dboCleanedData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5B0549C7-B9DE-4C30-B566-1493974A9C8E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update dboCleanedData"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
+          SQLTask:SqlStatementSource="UPDATE dbo.CleanedData&#xA;SET CombinedValue = &#xA;&#x9;CASE &#xA;&#x9;WHEN ValueValue IS NOT NULL THEN ValueValue&#xA;&#x9;&#x9;WHEN PercentageValue IS NOT NULL THEN PercentageValue&#xA;&#x9;&#x9;WHEN NetMarginValue IS NOT NULL THEN NetMarginValue&#xA;&#x9;ELSE NULL&#xA;&#x9;END " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -659,6 +676,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Populate dboCleanedData" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{682BF742-5A6A-4410-9E00-83C975E79ECF}"
+      DTS:From="Package\Populate dboCleanedData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update dboCleanedData" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -671,7 +696,11 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\Clear dboCleanedData"
+          TopLeft="178.857145903062,223.294120778675" />
         <NodeLayout
           Size="165.6,41.6"
           Id="Package\Clear dboRawData"
@@ -680,6 +709,10 @@
           Size="176,41.6"
           Id="Package\Import from Flat File"
           TopLeft="183.428574552342,134.588237181667" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\Populate dboCleanedData"
+          TopLeft="177.714288740742,303.576474800902" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="268.257145971182,92.9882360148183">
@@ -702,10 +735,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="182.4,41.6"
-          Id="Package\Clear dboCleanedData"
-          TopLeft="178.857145903062,223.294120778675" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="270.742860227702,176.188237181667">
@@ -728,10 +757,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="199.2,41.6"
-          Id="Package\Populate dboCleanedData"
-          TopLeft="177.714288740742,303.576474800902" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="273.685717321902,264.894120778675">
@@ -754,6 +779,32 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="192.8,41.6"
+          Id="Package\Update dboCleanedData"
+          TopLeft="184.48979906021,378.420173374427" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="255.840002118519,345.176474800902">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.2436985735249"
+              Start="0,0"
+              End="0,25.7436985735249">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.7436985735249" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -761,11 +812,7 @@
     design-time-name="Package\Import from Flat File">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="184.8,41.6"
-          Id="Package\Import from Flat File\TestOutput csv Source"
-          TopLeft="135.428573734906,52.6117654437425" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="170.4,41.6"
           Id="Package\Import from Flat File\OLE DB Destination"
@@ -774,6 +821,10 @@
           Size="180.8,41.6"
           Id="Package\Import from Flat File\Data Conversion 0 - 0"
           TopLeft="130.285716504467,138.870590182902" />
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\Import from Flat File\TestOutput csv Source"
+          TopLeft="135.428573734906,52.6117654437425" />
         <EdgeLayout
           Id="Package\Import from Flat File.Paths[Flat File Source Output]"
           TopLeft="224.257145119687,94.2117654437425">
@@ -793,7 +844,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -815,7 +868,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -32,9 +32,11 @@ namespace WebScraper_WebApp.Models
             {
                 entity.HasNoKey();
 
+                entity.Property(e => e.CombinedValue).HasColumnType("decimal(8, 3)");
+
                 entity.Property(e => e.NetMarginValue).HasColumnType("decimal(8, 3)");
 
-                entity.Property(e => e.PercentageValue).HasColumnType("decimal(7, 3)");
+                entity.Property(e => e.PercentageValue).HasColumnType("decimal(8, 3)");
 
                 entity.Property(e => e.RawValue).HasMaxLength(50);
 
@@ -47,7 +49,7 @@ namespace WebScraper_WebApp.Models
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ValueValue).HasColumnType("decimal(7, 3)");
+                entity.Property(e => e.ValueValue).HasColumnType("decimal(8, 3)");
             });
 
             modelBuilder.Entity<RawData>(entity =>

@@ -15,5 +15,6 @@ namespace WebScraper_WebApp.Models
         public decimal? ValueValue { get; set; }
         public decimal? PercentageValue { get; set; }
         public decimal? NetMarginValue { get; set; }
+        public decimal? CombinedValue { get; set; }
     }
 }

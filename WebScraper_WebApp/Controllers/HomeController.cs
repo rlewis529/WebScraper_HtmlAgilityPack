@@ -25,18 +25,20 @@ namespace WebScraper_WebApp.Controllers
         {            
             var q = from a in dbContext.CleanedData
                     where a.StatisticNumber == statSelect
-                    orderby a.ValueValue descending
+                    //orderby a.ValueValue descending
+                    orderby a.CombinedValue descending
                     select new ResultListItem
                     {
                         teamName = a.TeamName,
-                        statValue = (decimal)a.ValueValue,
+                        //statValue = (decimal)a.ValueValue,
+                        statValue = (decimal)a.CombinedValue,
                         statName = a.Statistic
                     };
             List<ResultListItem> resultList = q.ToList();
 
             var statValueCategories = from a in dbContext.CleanedData
                                       where a.TeamName == "Air Force Falcons"
-                                      && a.ValueType == "Value"
+                                      //&& a.ValueType == "Value"
                                       orderby a.StatisticNumber                                      
                                       select new StatListItem
                                       {
@@ -58,18 +60,20 @@ namespace WebScraper_WebApp.Controllers
         {
             var q = from a in dbContext.CleanedData
                     where a.StatisticNumber == 0
-                    orderby a.ValueValue descending                    
+                    //orderby a.ValueValue descending                    
+                    orderby a.CombinedValue descending
                     select new ResultListItem 
                     { 
                         teamName = a.TeamName,
-                        statValue = (decimal)a.ValueValue,
+                        //statValue = (decimal)a.ValueValue,
+                        statValue = (decimal)a.CombinedValue,
                         statName = a.Statistic
                     };                        
             List<ResultListItem> resultList = q.ToList();
 
             var statValueCategories = from a in dbContext.CleanedData
                                       where a.TeamName == "Air Force Falcons"
-                                      && a.ValueType == "Value"
+                                      //&& a.ValueType == "Value"
                                       orderby a.StatisticNumber                                      
                                       select new StatListItem
                                       {

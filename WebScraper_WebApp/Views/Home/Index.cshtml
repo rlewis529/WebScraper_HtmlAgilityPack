@@ -19,16 +19,15 @@
                         )
 <input type="submit" />
 </form>
+<br />
 
-<br />
-<br />
 <h2>@Model.resultList[0].statName</h2>
 
 <table>
     <tr>
-        <th>Rank</th>
+        <th>#</th>
         <th>Team Name</th>
-        <th>Statistic Value</th>
+        <th>Value</th>
     </tr>
     @*@foreach (var item in Model)
         {
@@ -41,7 +40,7 @@
     @for (int i = 0; i < Model.resultList.Count; i++)
         {
             <tr>
-                <td>@(i+1)</td>
+                <td>@(i+1) &nbsp; </td>
                 <td>@Model.resultList[i].teamName</td>
                 <td>@Model.resultList[i].statValue</td>
             </tr>
