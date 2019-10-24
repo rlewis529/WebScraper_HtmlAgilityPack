@@ -30,8 +30,10 @@ namespace WebScraper_HtmlAgilityPack
             
             HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
             var rawList = new List<DataEntry>();
+            var rawList2 = new List<DataEntry>();
             var consolidatedList = new List<DataEntry>();
             var sb = new StringBuilder();
+            var sb2 = new StringBuilder();
 
             for (int teamNumber = 0; teamNumber < teamListImport.Count; teamNumber++)            
             {
@@ -62,6 +64,7 @@ namespace WebScraper_HtmlAgilityPack
                 }
                 Console.WriteLine(teamListImport[teamNumber]);
             }
+            
             File.WriteAllText("testOutput.csv", sb.ToString());
             Console.WriteLine("Data collection complete.");
         }

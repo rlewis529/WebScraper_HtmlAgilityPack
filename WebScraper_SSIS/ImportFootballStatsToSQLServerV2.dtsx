@@ -12,11 +12,96 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{DF0B850C-95F6-4386-BF6A-02BE41062AA6}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{3B224B59-BB3C-4F50-BC20-614C5B3623E3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TeamRecordsFlatFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{49614df0-a985-4842-8040-0f239af2eb89}"
+      DTS:ObjectName="TeamRecordsFlatFile">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::RawFileSourcePath] + "\\TeamRecords.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\rlewis\source\repos\WebScraper_HtmlAgilityPack\WebScraper_HtmlAgilityPack\bin\Debug\netcoreapp2.2\TeamRecords.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TeamNames"
+              DTS:DTSID="{F29F1585-F2F2-4550-8D57-A4F42221AC44}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Wins"
+              DTS:DTSID="{213A50C9-AFED-4AE4-80AF-FDB9919DB245}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Losses"
+              DTS:DTSID="{2C761341-5D04-4A32-A690-CF360B4E1B85}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Games"
+              DTS:DTSID="{DFD96476-4BC2-4583-82EF-0FF222A7E387}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="WinPercent"
+              DTS:DTSID="{184EC106-4B01-4B7F-96B7-4BB048BB2F56}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LossPercent"
+              DTS:DTSID="{258D659B-D5A1-4205-982D-0280D10A932B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Conference"
+              DTS:DTSID="{D48EDE3F-7E7E-4315-8EE8-83661BD83272}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[TestOutputFlatFile]"
       DTS:CreationName="FLATFILE"
@@ -105,7 +190,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
-          SQLTask:SqlStatementSource="IF NOT EXISTS &#xA;(SELECT 1&#xA;FROM INFORMATION_SCHEMA.TABLES&#xA;WHERE TABLE_TYPE='BASE TABLE'&#xA;AND TABLE_SCHEMA='dbo'&#xA;AND TABLE_NAME='ConsolidatedStatistics')&#xA;CREATE TABLE [dbo].[ConsolidatedStatistics](&#xA;&#x9;[TeamName] [nvarchar](max) NULL,&#xA;&#x9;[PointsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPointsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[YardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PointsPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[OppPointsPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[YardsPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[OppYardsPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[3DConversionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[Opp3DConvPercent] [decimal](8, 3) NULL,&#xA;&#x9;[4DConversionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[Opp4DConvPercent] [decimal](8, 3) NULL,&#xA;&#x9;[RZScoringPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppRZScoringPercent] [decimal](8, 3) NULL,&#xA;&#x9;[RushPlayPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppRushPlayPercent] [decimal](8, 3) NULL,&#xA;&#x9;[YardsPerRush] [decimal](8, 3) NULL,&#xA;&#x9;[OppYardsPerRush] [decimal](8, 3) NULL,&#xA;&#x9;[RushesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppRushesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[RushYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppRushYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PassPlayPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppPassPlayPercent] [decimal](8, 3) NULL,&#xA;&#x9;[CompletionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppCompletionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[YardsPerPass] [decimal](8, 3) NULL,&#xA;&#x9;[OppYardsPerPass] [decimal](8, 3) NULL,&#xA;&#x9;[PassesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPassesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PassYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPassYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[IntThrownPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppIntThrownPercent] [decimal](8, 3) NULL,&#xA;&#x9;[QBSackedPercent] [decimal](8, 3) NULL,&#xA;&#x9;[SackPercent] [decimal](8, 3) NULL,&#xA;&#x9;[FGConversionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppFGConvPercent] [decimal](8, 3) NULL,&#xA;&#x9;[TOMarginPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppTOMarginPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[GiveawaysPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[TakeawaysPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[TakeawaysPerGame2] [decimal](8, 3) NULL,&#xA;&#x9;[GiveawaysPerGame2] [decimal](8, 3) NULL,&#xA;&#x9;[IntThrownPercent2] [decimal](8, 3) NULL,&#xA;&#x9;[OppIntThrownPercent2] [decimal](8, 3) NULL,&#xA;&#x9;[PenaltiesPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[OppPenaltiesPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[PenaltiesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPenaltiesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PenaltyYdsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPenaltyYdsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PenaltyYdsPerPen] [decimal](8, 3) NULL,&#xA;&#x9;[OppPenaltyYdsPerPen] [decimal](8, 3) NULL,&#xA;&#x9;[TOPPercent_netOT_] [decimal](8, 3) NULL,&#xA;&#x9;[OppTOPPercent_netOT_] [decimal](8, 3) NULL&#xA;);&#xA;&#xA;DELETE &#xA;FROM dbo.ConsolidatedStatistics" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF NOT EXISTS &#xA;(SELECT 1&#xA;FROM INFORMATION_SCHEMA.TABLES&#xA;WHERE TABLE_TYPE='BASE TABLE'&#xA;AND TABLE_SCHEMA='dbo'&#xA;AND TABLE_NAME='ConsolidatedStatistics')&#xA;CREATE TABLE [dbo].[ConsolidatedStatistics](&#xA;&#x9;[TeamName] [nvarchar](max) NULL,&#xA;&#x9;[PointsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPointsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[YardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PointsPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[OppPointsPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[YardsPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[OppYardsPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[3DConversionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[Opp3DConvPercent] [decimal](8, 3) NULL,&#xA;&#x9;[4DConversionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[Opp4DConvPercent] [decimal](8, 3) NULL,&#xA;&#x9;[RZScoringPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppRZScoringPercent] [decimal](8, 3) NULL,&#xA;&#x9;[RushPlayPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppRushPlayPercent] [decimal](8, 3) NULL,&#xA;&#x9;[YardsPerRush] [decimal](8, 3) NULL,&#xA;&#x9;[OppYardsPerRush] [decimal](8, 3) NULL,&#xA;&#x9;[RushesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppRushesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[RushYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppRushYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PassPlayPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppPassPlayPercent] [decimal](8, 3) NULL,&#xA;&#x9;[CompletionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppCompletionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[YardsPerPass] [decimal](8, 3) NULL,&#xA;&#x9;[OppYardsPerPass] [decimal](8, 3) NULL,&#xA;&#x9;[PassesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPassesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PassYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPassYardsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[IntThrownPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppIntThrownPercent] [decimal](8, 3) NULL,&#xA;&#x9;[QBSackedPercent] [decimal](8, 3) NULL,&#xA;&#x9;[SackPercent] [decimal](8, 3) NULL,&#xA;&#x9;[FGConversionPercent] [decimal](8, 3) NULL,&#xA;&#x9;[OppFGConvPercent] [decimal](8, 3) NULL,&#xA;&#x9;[TOMarginPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppTOMarginPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[GiveawaysPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[TakeawaysPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[TakeawaysPerGame2] [decimal](8, 3) NULL,&#xA;&#x9;[GiveawaysPerGame2] [decimal](8, 3) NULL,&#xA;&#x9;[IntThrownPercent2] [decimal](8, 3) NULL,&#xA;&#x9;[OppIntThrownPercent2] [decimal](8, 3) NULL,&#xA;&#x9;[PenaltiesPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[OppPenaltiesPerPlay] [decimal](8, 3) NULL,&#xA;&#x9;[PenaltiesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPenaltiesPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PenaltyYdsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[OppPenaltyYdsPerGame] [decimal](8, 3) NULL,&#xA;&#x9;[PenaltyYdsPerPen] [decimal](8, 3) NULL,&#xA;&#x9;[OppPenaltyYdsPerPen] [decimal](8, 3) NULL,&#xA;&#x9;[TOPPercent_netOT_] [decimal](8, 3) NULL,&#xA;&#x9;[OppTOPPercent_netOT_] [decimal](8, 3) NULL,&#xA;&#x9;[Wins] [int] NULL,&#xA;&#x9;[Losses] [int] NULL,&#xA;&#x9;[Games] [int] NULL,&#xA;&#x9;[WinPercent] [int] NULL,&#xA;&#x9;[LossPercent] [int] NULL,&#xA;&#x9;[Conference] [nvarchar](max) NULL&#xA;);&#xA;&#xA;DELETE &#xA;FROM dbo.ConsolidatedStatistics" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -123,6 +208,38 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
           SQLTask:SqlStatementSource="IF NOT EXISTS &#xA;(SELECT 1&#xA;FROM INFORMATION_SCHEMA.TABLES&#xA;WHERE TABLE_TYPE='BASE TABLE'&#xA;AND TABLE_SCHEMA='dbo'&#xA;AND TABLE_NAME='RawData')&#xA;CREATE TABLE [dbo].[RawData](&#xA;&#x9;[TeamName] [nvarchar](max) NULL,&#xA;&#x9;[StatisticNumber] [int] NULL,&#xA;&#x9;[Statistic] [nvarchar](max) NULL,&#xA;&#x9;[RawValue] [nvarchar](50) NULL&#xA;);&#xA;&#xA;DELETE &#xA;FROM dbo.RawData" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clear dboWinsLosses"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1B6CD78B-B688-45EC-87D6-77FDDFF974DF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear dboWinsLosses"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS &#xA;(SELECT 1&#xA;FROM INFORMATION_SCHEMA.TABLES&#xA;WHERE TABLE_TYPE='BASE TABLE'&#xA;AND TABLE_SCHEMA='dbo'&#xA;AND TABLE_NAME='dboWinsLosses')&#xA;CREATE TABLE [dbo].[WinsLosses](&#xA;&#x9;[TeamName] [nvarchar](max) NULL,&#xA;&#x9;[Wins] [int] NULL,&#xA;&#x9;[Losses] [int] NULL,&#xA;&#x9;[Games] [int] NULL,&#xA;&#x9;[WinPercent] [int] NULL,&#xA;&#x9;[LossPercent] [int] NULL,&#xA;&#x9;[Conference] [nvarchar](max) NULL&#xA;);&#xA;&#xA;DELETE &#xA;FROM dbo.WinsLosses" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\FixConsolidatedDataExceptionTeams"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CA7EE181-0D93-4DE3-A097-970F70E3F61C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FixConsolidatedDataExceptionTeams"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
+          SQLTask:SqlStatementSource="UPDATE dbo.ConsolidatedStatistics&#xA;SET Wins = 3,&#xA;&#x9;Losses = 4,&#xA;&#x9;Games = 7,&#xA;&#x9;WinPercent = 43,&#xA;&#x9;LossPercent = 57,&#xA;&#x9;Conference = 'MAC'&#xA;WHERE TeamName = 'Miami (Ohio) Redhawks'&#xA;&#xA;UPDATE dbo.ConsolidatedStatistics&#xA;SET Wins = 4,&#xA;&#x9;Losses = 3,&#xA;&#x9;Games = 7,&#xA;&#x9;WinPercent = 57,&#xA;&#x9;LossPercent = 43,&#xA;&#x9;Conference = 'SEC'&#xA;WHERE TeamName = 'Texas A&amp;amp;M Aggies'&#xA;&#xA;UPDATE dbo.ConsolidatedStatistics&#xA;SET Wins = 3,&#xA;&#x9;Losses = 4,&#xA;&#x9;Games = 7,&#xA;&#x9;WinPercent = 43,&#xA;&#x9;LossPercent = 57,&#xA;&#x9;Conference = 'CUSA'&#xA;WHERE TeamName = 'Texas-San Antonio Roadrunners'&#xA;&#xA;&#xA;UPDATE dbo.ConsolidatedStatistics&#xA;SET Wins = 5,&#xA;&#x9;Losses = 2,&#xA;&#x9;Games = 7,&#xA;&#x9;WinPercent = 71,&#xA;&#x9;LossPercent = 29,&#xA;&#x9;Conference = 'Sun Belt'&#xA;WHERE TeamName = 'UL Lafayette Ragin&amp;#039; Cajuns'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -635,6 +752,713 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Import WinsLosses"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7B0EA21D-614C-4A88-A4B6-164D6DC6AA60}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import WinsLosses"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import WinsLosses\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input].Columns[TeamNames]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TeamNames"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[TeamNames]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input].Columns[Wins]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Wins"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Wins]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input].Columns[Losses]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Losses"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Losses]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input].Columns[Games]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Games"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Games]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input].Columns[WinPercent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="WinPercent"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[WinPercent]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input].Columns[LossPercent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LossPercent"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[LossPercent]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input].Columns[Conference]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Conference"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Conference]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TeamNames]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="256"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TeamNames]"
+                      name="Copy of TeamNames"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[TeamNames]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Wins]"
+                      dataType="ui4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Wins]"
+                      name="Copy of Wins"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Wins]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Losses]"
+                      dataType="ui4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Losses]"
+                      name="Copy of Losses"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Losses]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Games]"
+                      dataType="ui4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Games]"
+                      name="Copy of Games"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Games]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of WinPercent]"
+                      dataType="ui4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of WinPercent]"
+                      name="Copy of WinPercent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[WinPercent]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LossPercent]"
+                      dataType="ui4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LossPercent]"
+                      name="Copy of LossPercent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[LossPercent]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Conference]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="256"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Conference]"
+                      name="Copy of Conference"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Conference]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import WinsLosses\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import WinsLosses\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TeamRecordsFlatFile]"
+                  connectionManagerRefId="Package.ConnectionManagers[TeamRecordsFlatFile]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[TeamNames]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[TeamNames]"
+                      length="50"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[TeamNames]"
+                      name="TeamNames"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Wins]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Wins]"
+                      length="50"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Wins]"
+                      name="Wins"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Losses]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Losses]"
+                      length="50"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Losses]"
+                      name="Losses"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Games]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Games]"
+                      length="50"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Games]"
+                      name="Games"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[WinPercent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[WinPercent]"
+                      length="50"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[WinPercent]"
+                      name="WinPercent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[LossPercent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LossPercent]"
+                      length="50"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[LossPercent]"
+                      name="LossPercent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Conference]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Conference]"
+                      length="50"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].Columns[Conference]"
+                      name="Conference"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[TeamNames]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TeamNames" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Wins]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Wins" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Losses]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Losses" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Games]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Games" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[WinPercent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WinPercent" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LossPercent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LossPercent" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Conference]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Conference" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import WinsLosses\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[WinsLosses]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import WinsLosses\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WebScraperDatabase]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Wins]"
+                      cachedDataType="ui4"
+                      cachedName="Copy of Wins"
+                      externalMetadataColumnId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Wins]"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Wins]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Losses]"
+                      cachedDataType="ui4"
+                      cachedName="Copy of Losses"
+                      externalMetadataColumnId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Losses]"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Losses]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Games]"
+                      cachedDataType="ui4"
+                      cachedName="Copy of Games"
+                      externalMetadataColumnId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Games]"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Games]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of WinPercent]"
+                      cachedDataType="ui4"
+                      cachedName="Copy of WinPercent"
+                      externalMetadataColumnId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WinPercent]"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of WinPercent]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of LossPercent]"
+                      cachedDataType="ui4"
+                      cachedName="Copy of LossPercent"
+                      externalMetadataColumnId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LossPercent]"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LossPercent]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of TeamNames]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="Copy of TeamNames"
+                      externalMetadataColumnId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TeamName]"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TeamNames]" />
+                    <inputColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Conference]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="Copy of Conference"
+                      externalMetadataColumnId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Conference]"
+                      lineageId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Conference]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TeamName]"
+                      dataType="nText"
+                      name="TeamName" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Wins]"
+                      dataType="i4"
+                      name="Wins" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Losses]"
+                      dataType="i4"
+                      name="Losses" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Games]"
+                      dataType="i4"
+                      name="Games" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WinPercent]"
+                      dataType="i4"
+                      name="WinPercent" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LossPercent]"
+                      dataType="i4"
+                      name="LossPercent" />
+                    <externalMetadataColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Conference]"
+                      dataType="nText"
+                      name="Conference" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import WinsLosses\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import WinsLosses\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import WinsLosses\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import WinsLosses\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import WinsLosses.Paths[Data Conversion Output]"
+              endId="Package\Import WinsLosses\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Import WinsLosses\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Import WinsLosses.Paths[Flat File Source Output]"
+              endId="Package\Import WinsLosses\Data Conversion.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\Import WinsLosses\Flat File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Populate dboCleanedData"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -680,6 +1504,22 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
           SQLTask:SqlStatementSource="INSERT INTO [dbo].[ConsolidatedStatistics]&#xA;&#x9;(TeamName)&#xA;SELECT TeamName&#xA;FROM dbo.CleanedData&#xA;Group by TeamName;&#xA;&#xA;UPDATE dest&#xA;SET &#xA;&#x9;dest.PointsPerGame = source.CombinedValue&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#xA;JOIN (&#xA;&#x9;SELECT *&#xA;&#x9;FROM dbo.CleanedData&#xA;&#x9;WHERE StatisticNumber = 0&#xA;&#x9;) &quot;source&quot;&#xA;ON source.TeamName = dest.TeamName&#xA;&#xA;UPDATE dest&#x9;&#xA;SET &#x9;&#xA;&#x9;dest.OppPointsPerGame = source.CombinedValue&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#xA;JOIN (&#x9;&#xA;&#x9;SELECT *&#xA;&#x9;FROM dbo.CleanedData&#xA;&#x9;WHERE StatisticNumber =  1&#xA;&#x9;) &quot;source&quot;&#xA;ON source.TeamName = dest.TeamName&#x9;&#xA;&#xA;&#xA;&#xA;UPDATE dest&#x9;&#xA;SET &#x9;&#xA;&#x9;dest.YardsPerGame = source.CombinedValue&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#xA;JOIN (&#x9;&#xA;&#x9;SELECT *&#xA;&#x9;FROM dbo.CleanedData&#xA;&#x9;WHERE StatisticNumber =  2&#xA;&#x9;) &quot;source&quot;&#xA;ON source.TeamName = dest.TeamName&#x9;&#xA;&#x9;&#xA;&#x9;&#xA;UPDATE dest&#x9;&#xA;SET &#x9;&#xA;&#x9;dest.OppYardsPerGame = source.CombinedValue&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#xA;JOIN (&#x9;&#xA;&#x9;SELECT *&#xA;&#x9;FROM dbo.CleanedData&#xA;&#x9;WHERE StatisticNumber =  3&#xA;&#x9;) &quot;source&quot;&#xA;ON source.TeamName = dest.TeamName&#x9;&#xA;&#xA;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PointsPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  4&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPointsPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  5&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.YardsPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  6&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppYardsPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  7&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.[3DConversionPercent] = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  8&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.Opp3DConvPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  9&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.[4DConversionPercent] = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  10&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.Opp4DConvPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  11&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.RZScoringPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  12&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppRZScoringPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  13&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.RushPlayPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  14&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppRushPlayPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  15&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.YardsPerRush = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  16&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppYardsPerRush = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  17&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.RushesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  18&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppRushesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  19&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.RushYardsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  20&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppRushYardsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  21&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PassPlayPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  22&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPassPlayPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  23&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.CompletionPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  24&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppCompletionPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  25&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.YardsPerPass = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  26&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppYardsPerPass = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  27&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PassesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  28&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPassesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  29&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PassYardsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  30&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPassYardsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  31&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.IntThrownPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  32&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppIntThrownPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  33&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.QBSackedPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  34&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.SackPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  35&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.FGConversionPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  36&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppFGConvPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  37&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.TOMarginPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  38&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppTOMarginPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  39&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.GiveawaysPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  40&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.TakeawaysPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  41&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.TakeawaysPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  42&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.GiveawaysPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  43&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.IntThrownPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  44&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppIntThrownPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  45&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PenaltiesPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  46&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPenaltiesPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  47&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PenaltiesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  48&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPenaltiesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  49&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PenaltyYdsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  50&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPenaltyYdsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  51&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PenaltyYdsPerPen = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  52&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPenaltyYdsPerPen = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  53&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.TOPPercent_netOT_ = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  54&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppTOPPercent_netOT_ = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  55&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update dboConsolidatedStatisticsForWinsLosses"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0182F0B6-84CF-4095-BAE9-B6C9CA9D7DA0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update dboConsolidatedStatisticsForWinsLosses"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
+          SQLTask:SqlStatementSource="UPDATE dest&#xA;SET &#xA;&#x9;dest.Wins = source.Wins,&#xA;&#x9;dest.Losses = source.Losses,&#xA;&#x9;dest.Games = source.Games,&#xA;&#x9;dest.WinPercent = source.WinPercent,&#xA;&#x9;dest.LossPercent = source.LossPercent,&#xA;&#x9;dest.Conference = source.Conference&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#xA;JOIN dbo.WinsLosses &quot;source&quot; ON source.TeamName = dest.TeamName" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -732,6 +1572,30 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
       DTS:To="Package\Update dboConsolidatedStatistics" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{A008FAA9-05A0-4169-AEED-6D50DF422B37}"
+      DTS:From="Package\Update dboConsolidatedStatistics"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Clear dboWinsLosses" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{3FC0089B-F413-4577-BF7C-9D91A5CCD0BD}"
+      DTS:From="Package\Clear dboWinsLosses"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Import WinsLosses" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{44B92D63-3082-4F55-902B-4E2A965CB4F9}"
+      DTS:From="Package\Import WinsLosses"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Update dboConsolidatedStatisticsForWinsLosses" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -744,27 +1608,35 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="182.4,41.6"
+          Size="182,42"
           Id="Package\Clear dboCleanedData"
           TopLeft="178.857145903062,223.294120778675" />
         <NodeLayout
-          Size="165.6,41.6"
+          Size="225,42"
+          Id="Package\Clear dboConsolidatedStatistics"
+          TopLeft="194.85714617554,447.200006271811" />
+        <NodeLayout
+          Size="166,42"
           Id="Package\Clear dboRawData"
           TopLeft="182.285717390021,51.3882360148182" />
         <NodeLayout
-          Size="176,41.6"
+          Size="176,42"
           Id="Package\Import from Flat File"
           TopLeft="183.428574552342,134.588237181667" />
         <NodeLayout
-          Size="199.2,41.6"
+          Size="199,42"
           Id="Package\Populate dboCleanedData"
           TopLeft="177.714288740742,303.576474800902" />
         <NodeLayout
-          Size="192.8,41.6"
+          Size="193,42"
           Id="Package\Update dboCleanedData"
           TopLeft="184.48979906021,378.420173374427" />
+        <NodeLayout
+          Size="234,42"
+          Id="Package\Update dboConsolidatedStatistics"
+          TopLeft="217.714289421938,516.941183720493" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="268.257145971182,92.9882360148183">
@@ -853,10 +1725,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="224.8,41.6"
-          Id="Package\Clear dboConsolidatedStatistics"
-          TopLeft="194.85714617554,447.200006271811" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="280.88979906021,420.020173374427">
@@ -891,10 +1759,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="234.4,41.6"
-          Id="Package\Update dboConsolidatedStatistics"
-          TopLeft="217.714289421938,516.941183720493" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
           TopLeft="307.25714617554,488.800006271811">
@@ -929,6 +1793,100 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Import WinsLosses"
+          TopLeft="251,659" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Clear dboWinsLosses"
+          TopLeft="243,586" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="333.357144710969,558.941183720493">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.058816279507"
+              Start="0,0"
+              End="0,19.558816279507">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.558816279507" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="333.5,628">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="304,42"
+          Id="Package\Update dboConsolidatedStatisticsForWinsLosses"
+          TopLeft="209,730" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="335,701">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26,29"
+              Start="0,0"
+              End="26,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="22,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22,14.5"
+                    Point2="26,14.5"
+                    Point3="26,18.5" />
+                  <mssgle:LineSegment
+                    End="26,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="251,42"
+          Id="Package\FixConsolidatedDataExceptionTeams"
+          TopLeft="615,111" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1002,6 +1960,95 @@
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Import from Flat File\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import WinsLosses">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Import WinsLosses\Flat File Source"
+          TopLeft="246,117" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Import WinsLosses\OLE DB Destination"
+          TopLeft="253,282" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Import WinsLosses\Data Conversion"
+          TopLeft="260,183" />
+        <EdgeLayout
+          Id="Package\Import WinsLosses.Paths[Data Conversion Output]"
+          TopLeft="338.25,225">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import WinsLosses.Paths[Flat File Source Output]"
+          TopLeft="321.5,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16.5,24"
+              Start="0,0"
+              End="16.5,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8"
+                    Point2="0,12"
+                    Point3="4,12" />
+                  <mssgle:LineSegment
+                    End="12.5,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.5,12"
+                    Point2="16.5,12"
+                    Point3="16.5,16" />
+                  <mssgle:LineSegment
+                    End="16.5,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import WinsLosses\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
