@@ -66,7 +66,8 @@ namespace WebScraper_HtmlAgilityPack
             }
             
             File.WriteAllText("testOutput.csv", sb.ToString());
-            Console.WriteLine("Data collection complete.");
+            Console.WriteLine();
+            Console.WriteLine("*** Data collection complete! ***");
         }
     }
 }
