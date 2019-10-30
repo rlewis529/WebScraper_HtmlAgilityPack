@@ -83,7 +83,7 @@ namespace WebScraper_HtmlAgilityPack
                     if (j % 5 == 0)
                     {
                         rawList2.Add(new DataEntry2 { TeamName = headerText2 });
-                        rawList2[j/5].WeekName = dataValues2[j].InnerText;
+                        rawList2[j / 5].WeekName = dataValues2[j].InnerText;
                     }
                     if (j % 5 == 1)
                     {                        
