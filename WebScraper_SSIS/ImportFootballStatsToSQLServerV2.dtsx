@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="54"
-  DTS:VersionGUID="{F0EDBF57-3A65-436F-B386-693F3C222B77}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{332B8B52-87ED-4C38-BC45-0FF795DA217A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1300,22 +1300,6 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Update dboConsolidatedStatistcs for Conference"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{0182F0B6-84CF-4095-BAE9-B6C9CA9D7DA0}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Update dboConsolidatedStatistcs for Conference"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
-          SQLTask:SqlStatementSource="UPDATE dest&#xA;SET &#xA;dest.Conference = source.Conference&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#xA;JOIN dbo.TeamInformation &quot;source&quot; ON source.TeamName = dest.TeamName" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\Update dboConsolidatedStatistics"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -1329,6 +1313,38 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
           SQLTask:SqlStatementSource="INSERT INTO [dbo].[ConsolidatedStatistics]&#xA;&#x9;(TeamName)&#xA;SELECT TeamName&#xA;FROM dbo.CleanedData&#xA;Group by TeamName;&#xA;&#xA;UPDATE dest&#xA;SET &#xA;&#x9;dest.PointsPerGame = source.CombinedValue&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#xA;JOIN (&#xA;&#x9;SELECT *&#xA;&#x9;FROM dbo.CleanedData&#xA;&#x9;WHERE StatisticNumber = 0&#xA;&#x9;) &quot;source&quot;&#xA;ON source.TeamName = dest.TeamName&#xA;&#xA;UPDATE dest&#x9;&#xA;SET &#x9;&#xA;&#x9;dest.OppPointsPerGame = source.CombinedValue&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#xA;JOIN (&#x9;&#xA;&#x9;SELECT *&#xA;&#x9;FROM dbo.CleanedData&#xA;&#x9;WHERE StatisticNumber =  1&#xA;&#x9;) &quot;source&quot;&#xA;ON source.TeamName = dest.TeamName&#x9;&#xA;&#xA;&#xA;&#xA;UPDATE dest&#x9;&#xA;SET &#x9;&#xA;&#x9;dest.YardsPerGame = source.CombinedValue&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#xA;JOIN (&#x9;&#xA;&#x9;SELECT *&#xA;&#x9;FROM dbo.CleanedData&#xA;&#x9;WHERE StatisticNumber =  2&#xA;&#x9;) &quot;source&quot;&#xA;ON source.TeamName = dest.TeamName&#x9;&#xA;&#x9;&#xA;&#x9;&#xA;UPDATE dest&#x9;&#xA;SET &#x9;&#xA;&#x9;dest.OppYardsPerGame = source.CombinedValue&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#xA;JOIN (&#x9;&#xA;&#x9;SELECT *&#xA;&#x9;FROM dbo.CleanedData&#xA;&#x9;WHERE StatisticNumber =  3&#xA;&#x9;) &quot;source&quot;&#xA;ON source.TeamName = dest.TeamName&#x9;&#xA;&#xA;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PointsPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  4&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPointsPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  5&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.YardsPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  6&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppYardsPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  7&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.[3DConversionPercent] = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  8&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.Opp3DConvPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  9&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.[4DConversionPercent] = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  10&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.Opp4DConvPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  11&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.RZScoringPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  12&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppRZScoringPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  13&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.RushPlayPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  14&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppRushPlayPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  15&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.YardsPerRush = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  16&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppYardsPerRush = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  17&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.RushesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  18&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppRushesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  19&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.RushYardsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  20&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppRushYardsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  21&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PassPlayPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  22&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPassPlayPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  23&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.CompletionPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  24&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppCompletionPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  25&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.YardsPerPass = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  26&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppYardsPerPass = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  27&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PassesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  28&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPassesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  29&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PassYardsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  30&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPassYardsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  31&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.IntThrownPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  32&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppIntThrownPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  33&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.QBSackedPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  34&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.SackPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  35&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.FGConversionPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  36&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppFGConvPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  37&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.TOMarginPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  38&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppTOMarginPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  39&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.GiveawaysPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  40&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.TakeawaysPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  41&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.TakeawaysPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  42&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.GiveawaysPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  43&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.IntThrownPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  44&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppIntThrownPercent = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  45&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PenaltiesPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  46&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPenaltiesPerPlay = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  47&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PenaltiesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  48&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPenaltiesPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  49&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PenaltyYdsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  50&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPenaltyYdsPerGame = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  51&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.PenaltyYdsPerPen = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  52&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppPenaltyYdsPerPen = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  53&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.TOPPercent_netOT_ = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  54&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;UPDATE dest&#x9;&#x9;&#x9;&#xA;SET &#x9;&#x9;&#x9;&#xA;&#x9;dest.OppTOPPercent_netOT_ = source.CombinedValue&#x9;&#x9;&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#x9;&#x9;&#x9;&#xA;JOIN (&#x9;&#x9;&#x9;&#xA;&#x9;SELECT *&#x9;&#x9;&#xA;&#x9;FROM dbo.CleanedData&#x9;&#x9;&#xA;&#x9;WHERE StatisticNumber =  55&#x9;&#x9;&#xA;&#x9;) &quot;source&quot;&#x9;&#x9;&#xA;ON source.TeamName = dest.TeamName&#x9;&#x9;&#x9;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update dboConsolidatedStatistics for Conference"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0182F0B6-84CF-4095-BAE9-B6C9CA9D7DA0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update dboConsolidatedStatistics for Conference"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
+          SQLTask:SqlStatementSource="UPDATE dest&#xA;SET &#xA;dest.Conference = source.Conference&#xA;FROM dbo.ConsolidatedStatistics &quot;dest&quot;&#xA;JOIN dbo.TeamInformation &quot;source&quot; ON source.TeamName = dest.TeamName" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update dboConsolidatedStatistics for Game Results"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{466EE6BC-C30A-45B1-BC55-7428B3CF94AE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update dboConsolidatedStatistics for Game Results"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D059A471-4E5D-4DE7-861E-F20CAEAACF19}"
+          SQLTask:SqlStatementSource="WITH CTE AS (&#xA;&#x9;SELECT &#xA;&#x9;dcs.TeamName, &#xA;&#x9;cd2.WinTotal 'TotalWins',&#xA;&#x9;cd2.LossTotal 'TotalLosses',&#xA;&#x9;cd2.OtherResultTotal 'TotalOther', &#xA;&#x9;(cd2.WinTotal + cd2.LossTotal + cd2.OtherResultTotal) 'TotalGamesPlayed',&#xA;&#x9;(cd2.WinTotal * 100.0 / (cd2.WinTotal + cd2.LossTotal + cd2.OtherResultTotal)) 'WinPercent',&#xA;&#x9;(cd2.LossTotal * 100.0 / (cd2.WinTotal + cd2.LossTotal + cd2.OtherResultTotal)) 'LossPercent',&#xA;&#x9;(cd2.OtherResultTotal * 100.0 / (cd2.WinTotal + cd2.LossTotal + cd2.OtherResultTotal)) 'OtherResultPercent'&#xA;FROM dbo.ConsolidatedStatistics dcs&#xA;JOIN (&#x9;SELECT TeamName, &#xA;&#x9;&#x9;SUM(&#xA;&#x9;&#x9;&#x9;CASE WHEN GameResult = 'W' THEN 1 ELSE 0&#xA;&#x9;&#x9;&#x9;END&#xA;&#x9;&#x9;) AS &quot;WinTotal&quot;,&#xA;&#x9;&#x9;SUM(&#xA;&#x9;&#x9;&#x9;CASE WHEN GameResult = 'L' THEN 1 ELSE 0&#xA;&#x9;&#x9;&#x9;END&#xA;&#x9;&#x9;) AS &quot;LossTotal&quot;,&#xA;&#x9;&#x9;SUM(&#xA;&#x9;&#x9;&#x9;CASE WHEN GameResult &lt;&gt; 'W' AND GameResult &lt;&gt; 'L' THEN 1 ELSE 0&#xA;&#x9;&#x9;&#x9;END&#xA;&#x9;&#x9;) AS &quot;OtherResultTotal&quot;&#xA;&#x9;&#x9;FROM CleanedData2 &#xA;&#x9;&#x9;GROUP BY TeamName) AS cd2&#xA;&#x9;&#x9;ON dcs.TeamName = cd2.TeamName&#xA;&#x9;)&#xA;UPDATE dcs&#xA;SET dcs.Wins = cte.TotalWins,&#xA;&#x9;dcs.Losses = cte.TotalLosses,&#xA;&#x9;dcs.Games = cte.TotalGamesPlayed,&#xA;&#x9;dcs.WinPercent = cte.WinPercent,&#xA;&#x9;dcs.LossPercent = cte.LossPercent&#xA;FROM dbo.ConsolidatedStatistics dcs&#xA;INNER JOIN CTE cte ON cte.TeamName = dcs.TeamName" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -1349,6 +1365,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Clear dboCleanedData" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{C56CAFBC-55CC-452C-A518-4058932C1129}"
+      DTS:From="Package\Update dboConsolidatedStatistics for Conference"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Update dboConsolidatedStatistics for Game Results" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -1412,7 +1436,7 @@
       DTS:From="Package\Clear and Populate dboCleanedData2"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 9"
-      DTS:To="Package\Update dboConsolidatedStatistcs for Conference" />
+      DTS:To="Package\Update dboConsolidatedStatistics for Conference" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -1427,43 +1451,47 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="182,42"
+          Size="254.4,41.6"
+          Id="Package\Clear and Populate dboCleanedData2"
+          TopLeft="222,729" />
+        <NodeLayout
+          Size="182.4,41.6"
           Id="Package\Clear dboCleanedData"
           TopLeft="178.857145903062,223.294120778675" />
         <NodeLayout
-          Size="225,42"
+          Size="224.8,41.6"
           Id="Package\Clear dboConsolidatedStatistics"
           TopLeft="194.85714617554,447.200006271811" />
         <NodeLayout
-          Size="166,42"
+          Size="166.4,41.6"
           Id="Package\Clear dboRawData"
           TopLeft="182.285717390021,51.3882360148182" />
         <NodeLayout
-          Size="172,42"
+          Size="172,41.6"
           Id="Package\Clear dboRawData2"
           TopLeft="239,595" />
         <NodeLayout
-          Size="176,42"
+          Size="176,41.6"
           Id="Package\Import from Flat File"
           TopLeft="183.428574552342,134.588237181667" />
         <NodeLayout
-          Size="162,42"
+          Size="161.6,41.6"
           Id="Package\Import RawData2"
           TopLeft="248,663" />
         <NodeLayout
-          Size="199,42"
+          Size="199.2,41.6"
           Id="Package\Populate dboCleanedData"
           TopLeft="177.714288740742,303.576474800902" />
         <NodeLayout
-          Size="269,42"
+          Size="268.8,41.6"
           Id="Package\Update dboCleanedData CombinedValue"
           TopLeft="184.48979906021,378.420173374427" />
         <NodeLayout
-          Size="259,42"
-          Id="Package\Update dboConsolidatedStatistcs for Conference"
-          TopLeft="215,862" />
+          Size="307.2,41.6"
+          Id="Package\Update dboConsolidatedStatistics for Conference"
+          TopLeft="216.14285716232,797.152940267015" />
         <NodeLayout
-          Size="234,42"
+          Size="233.6,41.6"
           Id="Package\Update dboConsolidatedStatistics"
           TopLeft="217.714289421938,516.941183720493" />
         <EdgeLayout
@@ -1690,10 +1718,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="254,42"
-          Id="Package\Clear and Populate dboCleanedData2"
-          TopLeft="222,729" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
           TopLeft="329,705">
@@ -1730,18 +1754,56 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="346.75,771">
+          TopLeft="349.2,770.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,91"
+              EndConnector="20.5428571623199,26.5529402670151"
               Start="0,0"
-              End="0,83.5">
+              End="20.5428571623199,19.0529402670151">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,83.5" />
+                    End="0,9.27647013350753" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.27647013350753"
+                    Point2="0,13.2764701335075"
+                    Point3="4,13.2764701335075" />
+                  <mssgle:LineSegment
+                    End="16.5428571623199,13.2764701335075" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.5428571623199,13.2764701335075"
+                    Point2="20.5428571623199,13.2764701335075"
+                    Point3="20.5428571623199,17.2764701335075" />
+                  <mssgle:LineSegment
+                    End="20.5428571623199,19.0529402670151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="318.4,41.6"
+          Id="Package\Update dboConsolidatedStatistics for Game Results"
+          TopLeft="209.142860704539,876.470595287864" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="369.042858933429,838.752940267015">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7176550208493"
+              Start="0,0"
+              End="0,30.2176550208493">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2176550208493" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1838,7 +1900,7 @@
     design-time-name="Package\Import RawData2">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="167,42"
           Id="Package\Import RawData2\RawData2 Flat File"
@@ -1878,7 +1940,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
