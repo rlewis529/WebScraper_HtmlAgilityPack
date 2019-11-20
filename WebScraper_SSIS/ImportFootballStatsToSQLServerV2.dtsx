@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="56"
-  DTS:VersionGUID="{332B8B52-87ED-4C38-BC45-0FF795DA217A}">
+  DTS:VersionBuild="59"
+  DTS:VersionGUID="{7711252C-C8DE-4347-9959-45CF5B7409D3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -39,16 +39,16 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Column 0"
-              DTS:DTSID="{AD7BBE24-CAAC-4562-840B-B916394DA90D}"
+              DTS:DTSID="{63C8D734-8B57-4F57-A8FE-A1B1C5A7F654}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="10"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Column 1"
-              DTS:DTSID="{4F6211CB-B51D-4C5D-964A-1D4647098EE7}"
+              DTS:DTSID="{298A0DE8-6832-4BBD-B0BB-9CF81C4E47DF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -57,34 +57,34 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Column 2"
-              DTS:DTSID="{576DF92A-6E06-4A2E-8059-C0F8F8FC200B}"
+              DTS:DTSID="{418EAEC0-08D3-4BBB-8232-D9AC31EE21EF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="10"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Column 3"
-              DTS:DTSID="{3904F116-06E8-45BF-9A0A-F9A0F5705564}"
+              DTS:DTSID="{B37235B5-D57B-4958-851D-504E1DF5EBC4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="10"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Column 4"
-              DTS:DTSID="{58D329E7-1823-48AF-835F-4F5570A33F07}"
+              DTS:DTSID="{C7220B4A-61FC-4432-AB7F-73FD8DF6ABD4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x000D__x000A_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="14"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Column 5"
-              DTS:DTSID="{28FB1EA5-ADE9-4A1B-BFAB-9D13B2406FFD}"
+              DTS:DTSID="{9D2CD43E-ACA6-4136-A3D3-A30442EB9503}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -922,7 +922,7 @@
                       refId="Package\Import RawData2\Populate dboRawData2.Inputs[OLE DB Destination Input].Columns[Column 1]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="10"
                       cachedName="Column 1"
                       externalMetadataColumnId="Package\Import RawData2\Populate dboRawData2.Inputs[OLE DB Destination Input].ExternalColumns[WeekName]"
                       lineageId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].Columns[Column 1]" />
@@ -938,7 +938,7 @@
                       refId="Package\Import RawData2\Populate dboRawData2.Inputs[OLE DB Destination Input].Columns[Column 3]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="10"
                       cachedName="Column 3"
                       externalMetadataColumnId="Package\Import RawData2\Populate dboRawData2.Inputs[OLE DB Destination Input].ExternalColumns[OpponentRank]"
                       lineageId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].Columns[Column 3]" />
@@ -946,7 +946,7 @@
                       refId="Package\Import RawData2\Populate dboRawData2.Inputs[OLE DB Destination Input].Columns[Column 4]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="10"
                       cachedName="Column 4"
                       externalMetadataColumnId="Package\Import RawData2\Populate dboRawData2.Inputs[OLE DB Destination Input].ExternalColumns[GameLocation]"
                       lineageId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].Columns[Column 4]" />
@@ -954,7 +954,7 @@
                       refId="Package\Import RawData2\Populate dboRawData2.Inputs[OLE DB Destination Input].Columns[Column 5]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="14"
                       cachedName="Column 5"
                       externalMetadataColumnId="Package\Import RawData2\Populate dboRawData2.Inputs[OLE DB Destination Input].ExternalColumns[GameResult]"
                       lineageId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].Columns[Column 5]" />
@@ -1083,7 +1083,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
-                      length="50"
+                      length="10"
                       lineageId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].Columns[Column 1]"
                       name="Column 1"
                       truncationRowDisposition="FailComponent">
@@ -1127,7 +1127,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
-                      length="50"
+                      length="10"
                       lineageId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].Columns[Column 3]"
                       name="Column 3"
                       truncationRowDisposition="FailComponent">
@@ -1149,7 +1149,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].ExternalColumns[Column 4]"
-                      length="50"
+                      length="10"
                       lineageId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].Columns[Column 4]"
                       name="Column 4"
                       truncationRowDisposition="FailComponent">
@@ -1171,7 +1171,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].ExternalColumns[Column 5]"
-                      length="50"
+                      length="14"
                       lineageId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].Columns[Column 5]"
                       name="Column 5"
                       truncationRowDisposition="FailComponent">
@@ -1199,7 +1199,7 @@
                       refId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
                       codePage="1252"
                       dataType="str"
-                      length="50"
+                      length="10"
                       name="Column 1" />
                     <externalMetadataColumn
                       refId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].ExternalColumns[Column 2]"
@@ -1211,19 +1211,19 @@
                       refId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
                       codePage="1252"
                       dataType="str"
-                      length="50"
+                      length="10"
                       name="Column 3" />
                     <externalMetadataColumn
                       refId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].ExternalColumns[Column 4]"
                       codePage="1252"
                       dataType="str"
-                      length="50"
+                      length="10"
                       name="Column 4" />
                     <externalMetadataColumn
                       refId="Package\Import RawData2\RawData2 Flat File.Outputs[Flat File Source Output].ExternalColumns[Column 5]"
                       codePage="1252"
                       dataType="str"
-                      length="50"
+                      length="14"
                       name="Column 5" />
                   </externalMetadataColumns>
                 </output>
@@ -1451,49 +1451,53 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="254.4,41.6"
+          Size="254,42"
           Id="Package\Clear and Populate dboCleanedData2"
           TopLeft="222,729" />
         <NodeLayout
-          Size="182.4,41.6"
+          Size="182,42"
           Id="Package\Clear dboCleanedData"
           TopLeft="178.857145903062,223.294120778675" />
         <NodeLayout
-          Size="224.8,41.6"
+          Size="225,42"
           Id="Package\Clear dboConsolidatedStatistics"
           TopLeft="194.85714617554,447.200006271811" />
         <NodeLayout
-          Size="166.4,41.6"
+          Size="166,42"
           Id="Package\Clear dboRawData"
           TopLeft="182.285717390021,51.3882360148182" />
         <NodeLayout
-          Size="172,41.6"
+          Size="172,42"
           Id="Package\Clear dboRawData2"
           TopLeft="239,595" />
         <NodeLayout
-          Size="176,41.6"
+          Size="176,42"
           Id="Package\Import from Flat File"
           TopLeft="183.428574552342,134.588237181667" />
         <NodeLayout
-          Size="161.6,41.6"
+          Size="162,42"
           Id="Package\Import RawData2"
           TopLeft="248,663" />
         <NodeLayout
-          Size="199.2,41.6"
+          Size="199,42"
           Id="Package\Populate dboCleanedData"
           TopLeft="177.714288740742,303.576474800902" />
         <NodeLayout
-          Size="268.8,41.6"
+          Size="269,42"
           Id="Package\Update dboCleanedData CombinedValue"
           TopLeft="184.48979906021,378.420173374427" />
         <NodeLayout
-          Size="307.2,41.6"
+          Size="234,42"
+          Id="Package\Update dboConsolidatedStatistics"
+          TopLeft="217.714289421938,516.941183720493" />
+        <NodeLayout
+          Size="307,42"
           Id="Package\Update dboConsolidatedStatistics for Conference"
           TopLeft="216.14285716232,797.152940267015" />
         <NodeLayout
-          Size="233.6,41.6"
-          Id="Package\Update dboConsolidatedStatistics"
-          TopLeft="217.714289421938,516.941183720493" />
+          Size="318,42"
+          Id="Package\Update dboConsolidatedStatistics for Game Results"
+          TopLeft="209.142860704539,876.470595287864" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="268.257145971182,92.9882360148183">
@@ -1530,6 +1534,28 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,39.6058835970077" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="369.042858933429,838.752940267015">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7176550208493"
+              Start="0,0"
+              End="0,30.2176550208493">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2176550208493" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1786,32 +1812,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="318.4,41.6"
-          Id="Package\Update dboConsolidatedStatistics for Game Results"
-          TopLeft="209.142860704539,876.470595287864" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="369.042858933429,838.752940267015">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,37.7176550208493"
-              Start="0,0"
-              End="0,30.2176550208493">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.2176550208493" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1900,7 +1900,7 @@
     design-time-name="Package\Import RawData2">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="167,42"
           Id="Package\Import RawData2\RawData2 Flat File"
@@ -1940,9 +1940,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
